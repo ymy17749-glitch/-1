@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Kivy
+.kivy/
+
+# Buildozer / python-for-android 生成物
+bin/
+.buildozer/
+.androidpe/
+*.apk
+*.aab
+
+# 编辑器
+.idea/
+.vscode/
+*.swp
