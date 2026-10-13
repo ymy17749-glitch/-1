@@ -1,0 +1,30 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build-apk:
+    name: Build Kivy APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 拉取代码
+        uses: actions/checkout@v4
+
+      - name: 用 Buildozer 编译 APK
+        uses: ArtemSBulgakov/buildozer-action@v1
+        id: buildozer
+        with:
+          workdir: .
+          command: buildozer android debug
+          buildozer_version: stable
+
+      - name: 上传编译好的 APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: minesweeper-apk
+          path: bin/*.apk
+          if-no-files-found: error
